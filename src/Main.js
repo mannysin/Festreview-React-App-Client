@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login  from './components/Login';
 import FestivalIndex from './components/FestivalIndex';
+import SingleFestival from './components/SingleFestival';
 import Axios from 'axios';
 
 class Main extends Component {
@@ -71,7 +72,7 @@ class Main extends Component {
                 <Route path="/festivals/:page" component = {FestivalIndex}/>
                 <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
                 <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
-            
+                <Route path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
             
             
             </Switch>

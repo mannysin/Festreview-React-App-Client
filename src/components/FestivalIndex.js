@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import "../App.css";
 import Axios from 'axios';
-import {Link} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+
+import SingleFestival from './SingleFestival';
 
 
 class FestivalIndex extends Component{
@@ -18,35 +20,15 @@ class FestivalIndex extends Component{
     fetchFestivals = (pageNumber) =>{
         Axios.get(`http://localhost:4000/api/festivals/${pageNumber}`)
         .then((responseFromApi)=>{
-            // setTimeout(() => {
                 this.setState({allTheFestivals: responseFromApi.data.events.event})
                 console.log("yoyoyoyoyo here i am ", this.state)
-            // }, 1000)
-            // let allTheFestivals = responseFromApi.data.events.event.map((fest)=> {
-            //     return (
-            //         <div key={fest._id}>
-            //          <h3>yoyo</h3>
-            //          <h3>{fest.title}</h3>
-            //          <h6>{fest.description}</h6>
-            //          <Link to={'/festival/'+ fest._id} >See Details</Link></div>
-            //     )
-            //     console.log('map++++', fest)
-            //     // this.render(
-            //     //     <div key={fest._id}>
-            //     //     <h3>yoyo</h3>
-            //     //     <h3>{fest.title}</h3>
-            //     //     <h6>{fest.description}</h6>
-            //     //     <Link to={'/festival/'+ fest._id} >See Details</Link></div>
-            //     // )
-            // })
-            // this.setState({allTheFestivals: allTheFestivals});
         })    
         .catch((err)=>{
         })
     }
 
     showAllFestivals = () => {
-        // setTimeout(() => {
+        
         if(this.state.allTheFestivals){
             console.log("yomofo", this.state)
         //     const allFestivals = this.state.allTheFestivals.filter((eachProject)=>{
@@ -56,63 +38,41 @@ class FestivalIndex extends Component{
             return this.state.allTheFestivals.map((eachFestival)=>{
                 console.log("yomofo3", eachFestival)
                 return(
-                    <div key={eachFestival._id}>
+                    <div className="festIndex-container" key={eachFestival._id}>
+                    <Switch>
+                    <Link to="/festivals/:id">
+                    <img src={eachFestival.image.medium.url} alt={`${eachFestival.title}`} /></Link>
+                    <Route path="/festival/:id" component = {SingleFestival}/>
+                    </Switch>
                     <h3>{eachFestival.title}</h3>
+                    <h3>When: {eachFestival.start_time}</h3>
+                    <h3>Where: {eachFestival.city_name}, {eachFestival.region_name}</h3>
+                    <h3>Venue: {eachFestival.venue_name} <br/> {eachFestival.venue_address}</h3>
                     <h6>{eachFestival.description}</h6>
-                    <Link to={'/festival/'+ eachFestival._id} >See Details</Link>
+                    <button onClick={this.deleteReview} className="delete">See Details!</button>
+                    
+                    
+                    {/* <Link to="/festivals/:id">See Details</Link> */}
+                    
+
+                    
+
+
                 </div>
             )
             
         })
-    }
-// }, 1000)
-       
+    }       
     }
 
 
-    // showAllFestivals = () => {
-    //     let theURL = window.location.pathname.split('/')
-    //     this.fetchFestivals(theURL[theURL.length-1])
-    //     let allFestivals = this.componentDidMount(){
-    //         return ( allFestivals.map((eachFestival)=>{
-    //             return(
-    //                 <div key={eachFestival._id}>
-    //                 <h3>{eachFestival.title}</h3>
-    //                 <h6>{eachFestival.description}</h6>
-    //                 <Link to={'/festival/'+ eachFestival._id} >See Details</Link>
-    //             </div>
-    //             )
-    //         )
-    //     })
-
-    //     }
-            
-            
-    // }
-
-    // showAllTheFestivals = () =>{
-    //     this.setState(function(prevState, props){
-           
-    //         return this.state.allTheFestivals.map((eachFestival, i)=>{
-    //             return (
-    //                 <div key={eachFestival._id}>
-    //     <h3>{eachFestival.title}</h3>
-    //     <h6>{eachFestival.description}</h6>
-    //     <Link to={'/festival/'+ eachFestival._id} >See Details</Link>
-    //         </div>
-    //       )
-    //     })
-    // });
-    //   }
-
+ 
 
 
     render(){
-        // {this.fetchFestivals()}
-      
         return(
             <div>
-            <h1>Festival Index</h1>
+            <h1>Find your next Adventure below!</h1>
 
             <div className="list-of-Festivals-container">
             {this.showAllFestivals()}
@@ -123,8 +83,6 @@ class FestivalIndex extends Component{
             </div>
         )
     }
-
-
 
 }
 
