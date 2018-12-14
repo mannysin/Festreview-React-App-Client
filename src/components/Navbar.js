@@ -1,36 +1,23 @@
 import React, {Component} from 'react';
 import "../App.css";
-import UserService from '../services/UserService';
-
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 
 class Navbar extends Component {
-    service = new UserService()
-
-    logout = () =>{
-        this.service.logout().then(()=>{
-            this.props.loggedInUser({loggedInUser: null})
-        // this.setState({loggedInUser: null});
-        })
-    }
-
+    
     showLogIn = () => {
-        if(this.props.yoyo){
+        if(!this.props.user){
             return (
-                <div>
-                    <button onClick = {this.props.LogOutTheUser} >Logout</button>
-
-                </div>
+                <span>
+                    <NavLink to="/signup"> Sign Up For Account</NavLink>
+                    <NavLink to="/login"> Login </NavLink>
+                </span>
             )
         } else {
             return (
-                <div>
-                    <Link to="/signup"> Sign Up For Account</Link>
-                    <Link to="/login"> Login </Link>
-                </div>
-
-                
+                <span>
+                    <button onClick = {this.props.logout}>Logout</button>
+                </span>
             )
         }
     }
@@ -39,7 +26,8 @@ class Navbar extends Component {
     render(){
       return(
         <div>
-           <Link to="/festivals/1">Browse Festivals</Link>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/festivals/1">Browse Festivals</NavLink>
             {this.showLogIn()}
 
         </div>

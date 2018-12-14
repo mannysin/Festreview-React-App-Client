@@ -13,6 +13,9 @@ class UserService {
     this.service = service;
   }
 
+
+//   axios.create allows you to preconfigure the url (and headers) of axios requests
+// so that when we make an axios request with that object, we pass in a url, and that url gets added onto the end of the url we created the axios object with
     signup = (username, password) => {
         return this.service.post('/signup', {username, password})
         .then(response => response.data)

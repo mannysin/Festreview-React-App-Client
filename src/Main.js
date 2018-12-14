@@ -1,40 +1,42 @@
 import React, { Component } from 'react';
 import {Route, Switch, Link} from 'react-router-dom';
 import './App.css';
+
+
+
+import UserService from './services/UserService';
+import Homepage  from './components/Homepage';
+import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login  from './components/Login';
-import Homepage  from './components/Homepage';
 import FestivalIndex from './components/FestivalIndex';
-import Navbar from './components/Navbar';
-import UserService from './services/UserService';
+import Axios from 'axios';
 
 class Main extends Component {
     state={
-        loggedInUser: null
+        loggedInUser: {}
     }
     service = new UserService()
     
     componentDidMount(props){
-    this.fetchUser()
+        this.fetchUser()
     } 
     
     fetchUser(){
-        if( this.state.loggedInUser === null ){
         this.service.loggedin()
         .then(theActualUserFromDB =>{
-            console.log('signed in')
+            console.log('signed in', theActualUserFromDB)
             this.setState({
-            loggedInUser:  theActualUserFromDB
+                loggedInUser:  theActualUserFromDB
             }) 
 
         })
         .catch( err =>{
-            console.log('catch getting hit')
+            console.log(err,'catch getting hit')
             this.setState({
-            loggedInUser:  false
+                loggedInUser:  false
             }) 
         })
-        }
     }
     
     logInTheUser = (userToLogIn) => {
@@ -50,20 +52,19 @@ class Main extends Component {
     }
 
     logOutTheUser = () => {
-        this.service.logout().then(()=> {
-            this.setState({loggedInUser: null})
+        this.service.logout()
+        .then(()=> {
+            this.setState({loggedInUser: {}})
         })
     }
     
     
     
     render() {
-    {this.fetchUser()}
    
         return (
             <div>
-            
-                <Navbar yoyo = {this.logInTheUser} whatAboutNow = {this.logOutTheUser}/>
+                <Navbar user={this.state.loggedInUser} logout={this.logOutTheUser}/>
                 <Homepage />
             <Switch>
                 

@@ -17,16 +17,13 @@ class Login extends Component {
 
     handleFormSubmit = (e) =>{
         e.preventDefault();
-        // you could just do axios.post('http://localhost:5000/api/signup, {username: this.state.userNameInput, password: this.state.passWordInput}, {withCredentials: true})
         this.service.login(this.state.usernameInput, this.state.passwordInput)
         .then((userFromDB)=>{
             this.props.logTheUserIntoAppComponent(userFromDB)
             this.setState({usernameInput: '', passwordInput: ''})
 
+           // this.props.history.push('/Navbar');
             this.props.history.push('/');
-            this.props.history.push('/Navbar');
-
-
         })
         .catch((err)=>{
             console.log('sorry something went wrong', err)
@@ -45,11 +42,11 @@ class Login extends Component {
                 <label>Password:</label>
                 <input name="passwordInput" value={this.state.passwordInput} required onChange={ e => this.handleChange(e)} />
                 
-                <input type="submit" value="Signup" />
+                <input type="submit" value="Login" />
             </form>
 
 
-    </div>
+        </div>
       )
     }
   }

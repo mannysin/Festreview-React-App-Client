@@ -24,7 +24,7 @@ class Signup extends Component {
             this.setState({usernameInput: '', passwordInput: ''})
 
             this.props.history.push('/FestivalIndex');
-            this.props.history.push('/Navbar');
+            this.props.history.push('/');
 
         })
         .catch((err)=>{
@@ -39,16 +39,16 @@ class Signup extends Component {
         <div>
             <form onSubmit={this.handleFormSubmit}>
                 <label>Username:</label>
-                <input type="text" name="usernameInput" value={this.state.usernameInput} onChange={ e => this.handleChange(e)}/>
+                <input type="text" name="usernameInput"  value={this.state.usernameInput} required onChange={ e => this.handleChange(e)}/>
                 
                 <label>Password:</label>
-                <input name="passwordInput" value={this.state.passwordInput} onChange={ e => this.handleChange(e)} />
+                <input name="passwordInput"  value={this.state.passwordInput} required onChange={ e => this.handleChange(e)} />
                 
                 <input type="submit" value="Signup" />
             </form>
 
             <p>Already have account? 
-                {/* <Link to={"/"}> Login</Link> */}
+                <Link to={"/login"}> Login</Link>
             </p>
 
     </div>

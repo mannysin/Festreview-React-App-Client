@@ -3,16 +3,13 @@ import "../App.css";
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
 
-// import AddNewProject from './AddNewProject';
-
 
 class FestivalIndex extends Component{
     state={
         allTheFestivals: [],
-
     }
 
-    componentDidMount(){
+    componentWillMount(){
         let theURL = window.location.pathname.split('/')
         this.fetchFestivals(theURL[theURL.length-1])
     }
@@ -22,19 +19,28 @@ class FestivalIndex extends Component{
         Axios.get(`http://localhost:4000/api/festivals/${pageNumber}`)
         .then((responseFromApi)=>{
             let allTheFestivals = responseFromApi.data.events.event.map((fest)=> {
-                console.log('map++++', fest)
-                this.render(
-                    <div key={fest._id}>
-                    <h3>yoyo</h3>
-                    <h3>{fest.title}</h3>
-                    <h6>{fest.description}</h6>
-                    <Link to={'/festival/'+ fest._id} >See Details</Link></div>
+                return (
+                    <div>
+                        <h1>lets go</h1>
+                    </div>
                 )
+                console.log('map++++', fest)
+                // this.render(
+                //     <div key={fest._id}>
+                //     <h3>yoyo</h3>
+                //     <h3>{fest.title}</h3>
+                //     <h6>{fest.description}</h6>
+                //     <Link to={'/festival/'+ fest._id} >See Details</Link></div>
+                // )
             })
             this.setState({allTheFestivals: allTheFestivals});
         })    
         .catch((err)=>{
         })
+    }
+
+    showAllFestivals = () =>{
+        this.fetchFestivals();
     }
 
     // showAllFestivals = () => {
@@ -75,14 +81,14 @@ class FestivalIndex extends Component{
 
 
     render(){
-        {this.fetchFestivals()}
+        // {this.fetchFestivals()}
       
         return(
             <div>
             <h1>Festival Index</h1>
 
             <div className="list-of-Festivals-container">
-            {/* {this.componentWillMount()} */}
+            {this.showAllFestivals()}
             </div>
 
 
