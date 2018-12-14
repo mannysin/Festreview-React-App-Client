@@ -25,10 +25,13 @@ class Navbar extends Component {
     
     render(){
       return(
-        <div>
+        <div className="nav">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/festivals/1">Browse Festivals</NavLink>
+            
             {this.showLogIn()}
+
+        
 
         </div>
       )

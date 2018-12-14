@@ -34,3 +34,16 @@
 a {
   margin: 3px;
 }
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #c06014;
+  height: 4vh;
+}
+
+
+.signUp {
+  background-color: #c06014
+}

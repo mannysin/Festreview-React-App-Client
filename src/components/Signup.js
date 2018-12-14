@@ -36,7 +36,7 @@ class Signup extends Component {
   
     render(){
       return(
-        <div>
+        <div className="signUp">
             <form onSubmit={this.handleFormSubmit}>
                 <label>Username:</label>
                 <input type="text" name="usernameInput"  value={this.state.usernameInput} required onChange={ e => this.handleChange(e)}/>
@@ -50,8 +50,7 @@ class Signup extends Component {
             <p>Already have account? 
                 <Link to={"/login"}> Login</Link>
             </p>
-
-    </div>
+        </div>
       )
     }
   }

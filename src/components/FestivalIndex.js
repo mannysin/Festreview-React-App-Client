@@ -9,7 +9,7 @@ class FestivalIndex extends Component{
         allTheFestivals: [],
     }
 
-    componentWillMount(){
+    componentWillMount(props){
         let theURL = window.location.pathname.split('/')
         this.fetchFestivals(theURL[theURL.length-1])
     }
@@ -18,30 +18,57 @@ class FestivalIndex extends Component{
     fetchFestivals = (pageNumber) =>{
         Axios.get(`http://localhost:4000/api/festivals/${pageNumber}`)
         .then((responseFromApi)=>{
-            let allTheFestivals = responseFromApi.data.events.event.map((fest)=> {
-                return (
-                    <div>
-                        <h1>lets go</h1>
-                    </div>
-                )
-                console.log('map++++', fest)
-                // this.render(
-                //     <div key={fest._id}>
-                //     <h3>yoyo</h3>
-                //     <h3>{fest.title}</h3>
-                //     <h6>{fest.description}</h6>
-                //     <Link to={'/festival/'+ fest._id} >See Details</Link></div>
-                // )
-            })
-            this.setState({allTheFestivals: allTheFestivals});
+            // setTimeout(() => {
+                this.setState({allTheFestivals: responseFromApi.data.events.event})
+                console.log("yoyoyoyoyo here i am ", this.state)
+            // }, 1000)
+            // let allTheFestivals = responseFromApi.data.events.event.map((fest)=> {
+            //     return (
+            //         <div key={fest._id}>
+            //          <h3>yoyo</h3>
+            //          <h3>{fest.title}</h3>
+            //          <h6>{fest.description}</h6>
+            //          <Link to={'/festival/'+ fest._id} >See Details</Link></div>
+            //     )
+            //     console.log('map++++', fest)
+            //     // this.render(
+            //     //     <div key={fest._id}>
+            //     //     <h3>yoyo</h3>
+            //     //     <h3>{fest.title}</h3>
+            //     //     <h6>{fest.description}</h6>
+            //     //     <Link to={'/festival/'+ fest._id} >See Details</Link></div>
+            //     // )
+            // })
+            // this.setState({allTheFestivals: allTheFestivals});
         })    
         .catch((err)=>{
         })
     }
 
-    showAllFestivals = () =>{
-        this.fetchFestivals();
+    showAllFestivals = () => {
+        // setTimeout(() => {
+        if(this.state.allTheFestivals){
+            console.log("yomofo", this.state)
+        //     const allFestivals = this.state.allTheFestivals.filter((eachProject)=>{
+        //         return eachProject.save()
+        //     })
+
+            return this.state.allTheFestivals.map((eachFestival)=>{
+                console.log("yomofo3", eachFestival)
+                return(
+                    <div key={eachFestival._id}>
+                    <h3>{eachFestival.title}</h3>
+                    <h6>{eachFestival.description}</h6>
+                    <Link to={'/festival/'+ eachFestival._id} >See Details</Link>
+                </div>
+            )
+            
+        })
     }
+// }, 1000)
+       
+    }
+
 
     // showAllFestivals = () => {
     //     let theURL = window.location.pathname.split('/')
@@ -89,6 +116,7 @@ class FestivalIndex extends Component{
 
             <div className="list-of-Festivals-container">
             {this.showAllFestivals()}
+            <h2>WHAT</h2>
             </div>
 
 
