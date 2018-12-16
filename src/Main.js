@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Route, Switch, Link} from 'react-router-dom';
 import './App.css';
+import Axios from 'axios';
+
 
 
 
@@ -10,12 +12,12 @@ import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login  from './components/Login';
 import FestivalIndex from './components/FestivalIndex';
+import NAFestivalIndex from './components/NAFestivalIndex';
 import SingleFestival from './components/SingleFestival';
-import Axios from 'axios';
 
 class Main extends Component {
     state={
-        loggedInUser: {}
+        loggedInUser: {},
     }
     service = new UserService()
     
@@ -49,6 +51,8 @@ class Main extends Component {
         return(
             <div>Welcome, {this.state.loggedInUser.username}</div>
         )
+        } else {
+            return
         }
     }
 
@@ -65,18 +69,26 @@ class Main extends Component {
    
         return (
             <div>
-                <Navbar user={this.state.loggedInUser} logout={this.logOutTheUser}/>
-                <Homepage />
-            <Switch>
                 
-                <Route path="/festivals/:page" component = {FestivalIndex}/>
-                <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
-                <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
-                <Route path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
+                <div>
+                    <Navbar user={this.state.loggedInUser} logout={this.logOutTheUser}/>
+                </div>
+
+                <div className="component-container">
+                {/* <Homepage /> */}
+                <Switch>
+                    
+                    <Route exact path="/festivals/:page" component = {FestivalIndex}/>
+                    <Route path="/festivals/na/:page" component = {NAFestivalIndex}/>
+                    <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
+                    <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
+                    <Route path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
             
-            
-            </Switch>
+                </Switch>
             {this.showUser()}
+
+
+                </div>
             </div>
             );
         }

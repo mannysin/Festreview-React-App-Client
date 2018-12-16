@@ -20,10 +20,10 @@ class FestivalIndex extends Component{
 
 
     fetchFestivals = (pageNumber) =>{
-        Axios.get(`http://localhost:4000/api/festivals/${pageNumber}`)
+        Axios.get(`http://localhost:4000/api/festivals/na/${pageNumber}`)
         .then((responseFromApi)=>{
                 this.setState({allTheFestivals: responseFromApi.data.events.event, loading: false})
-                console.log("yoyoyoyoyo here i am ", this.state)
+                console.log("yoyoyoyoyo here i am in the USA ", this.state)
         })    
         .catch((err)=>{
         })

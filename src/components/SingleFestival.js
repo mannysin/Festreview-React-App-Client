@@ -61,7 +61,42 @@ class SingleReview extends Component{
                 <button onClick={this.deleteReview} className="delete">See Details!</button>
             </div>
 
+            <form action="/festival/addFestival" method="POST">
+                <label for="titleInput"></label>
+                <input id="titleInput" name="title" value={this.state.value} class="display"></input>
+
+                <label for="imageInput"></label>
+                <input id="imageInput" name="image" value={this.state.value}  class="display"></input>
+
+                <label for="descriptionInput"></label>
+                <input id="descriptionInput" name="description" value={this.state.value}  class="display"></input>
+
+                <label for="ageInput"></label>
+                <input id="ageInput" name="ageRating" value={this.state.value}  class="display"></input>
+
+                <label for="episodeInput"></label>
+                <input id="episodeInput" name="episodeCount" value={this.state.value}  class="display"></input>
+
+                <label for="ratingInpute"></label>
+                <input id="ratingInpute" name="averageRating" value={this.state.value} class="display"></input>
+
+                <label for="startInpute"></label>
+                <input id="startInpute" name="startDate" value={this.state.value}  class="display"></input>
+
+                <label for="endInpute"></label>
+                <input id="endInpute" name="endDate" value={this.state.value}  class="display"></input>
+
+                <label for="statusInpute"></label>
+                <input id="statusInpute" name="status" value={this.state.value}  class="display"></input>
+
+
+                <div>
+                <button type="submit" class="btn btn-primary">Submit a Review</button>
                 </div>
+
+                </form>
+
+        </div>
         )
     }
 
