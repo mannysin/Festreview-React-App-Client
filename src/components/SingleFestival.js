@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import "../App.css";
 import Axios from 'axios';
 import Loader from 'react-loader-spinner'
+import FestivalIndex from './FestivalIndex';
 
 
 class SingleReview extends Component{
     state={
-        oneFestival: [],
+        oneFestival: {},
         loading: true,
     }
 
@@ -53,7 +54,7 @@ class SingleReview extends Component{
                 return(
                     <div className="festIndex-container">
                          <h1>Details Page</h1>
-                         {/* <img src ={oneFestival.images.image.medium.url}/>                        */}
+                         {/* <img src ={oneFestival.images.image.medium.url} alt="Festival Image"/>                        */}
                             <h1>{oneFestival.title}'s details:</h1>
                             <h2>When: {oneFestival.start_time}</h2>
                             <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
@@ -128,7 +129,7 @@ class SingleReview extends Component{
         if(this.state.loading){
             return(
                 <div>
-                    <span>🎶Getting all the festivals...🎶</span>
+                    <span>🎶Getting festival details...🎶</span>
                     <Loader 
                     type="Puff"
                     color="#ffe680"
@@ -147,7 +148,10 @@ class SingleReview extends Component{
      
         return(
             <div>
+                <div>
                 {this.showLoader()}
+
+                </div>
                 {this.showOneFestival()}
                 <br />
                 <br />

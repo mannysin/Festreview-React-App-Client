@@ -47,7 +47,7 @@ class Navbar extends Component {
                 </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+            <a class="navbar-link" href="http://localhost:3000/festivals">
             Festivals
             </a>
             <div class="navbar-dropdown is-boxed">

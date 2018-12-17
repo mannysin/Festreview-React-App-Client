@@ -17,7 +17,7 @@ import SingleFestival from './components/SingleFestival';
 
 class Main extends Component {
     state={
-        loggedInUser: {},
+        loggedInUser: null,
     }
     service = new UserService()
     
@@ -59,7 +59,7 @@ class Main extends Component {
     logOutTheUser = () => {
         this.service.logout()
         .then(()=> {
-            this.setState({loggedInUser: {}})
+            this.setState({loggedInUser: null})
         })
     }
     
@@ -78,7 +78,7 @@ class Main extends Component {
                 {/* <Homepage /> */}
                 <Switch>
                     
-                    <Route exact path="/festivals/:page" component = {FestivalIndex}/>
+                    <Route exact path="/festivals/:page" render = {(props)=> <FestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser}/> }/>
                     <Route exact path="/festivals/na/:page" render = {(props)=> <NAFestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser}/> }/>
                     <Route exact path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
                     <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
