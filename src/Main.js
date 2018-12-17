@@ -79,10 +79,10 @@ class Main extends Component {
                 <Switch>
                     
                     <Route exact path="/festivals/:page" component = {FestivalIndex}/>
-                    <Route path="/festivals/na/:page" component = {NAFestivalIndex}/>
+                    <Route exact path="/festivals/na/:page" render = {(props)=> <NAFestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser}/> }/>
+                    <Route exact path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
                     <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
                     <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
-                    <Route path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
             
                 </Switch>
             {this.showUser()}

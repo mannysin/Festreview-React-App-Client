@@ -20,3 +20,8 @@
   margin-top: 6vh;
   padding: 5px; 
 }
+
+
+.display{
+  visibility: hidden;
+}

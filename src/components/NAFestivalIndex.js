@@ -32,8 +32,8 @@ class FestivalIndex extends Component{
     showAllFestivals = () => {
         
         if(this.state.allTheFestivals){
-        //     const allFestivals = this.state.allTheFestivals.filter((eachProject)=>{
-        //         return eachProject.save()
+        //     const allFestivals = this.state.allTheFestivals.filter((eachFestival)=>{
+        //         return eachFestival.save()
         //     })
 
             return this.state.allTheFestivals.map((eachFestival)=>{

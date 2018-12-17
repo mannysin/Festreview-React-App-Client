@@ -28,7 +28,7 @@ class Navbar extends Component {
     
     render(){
       return(
-        <nav className="navbar is-fixed-top">
+        <nav className="navbar is-fixed-top is-warning">
         <div className="navbar-brand navbar-item">
             <NavLink to="/">
             <img src="/festreview-logo.png" alt="FestReview"/>
@@ -71,6 +71,9 @@ class Navbar extends Component {
         </div>
                 <a className="navbar-item">
                     {this.showLogIn()}
+                </a>
+                <a className="navbar-item">
+                <NavLink to="/">About Us</NavLink>
                 </a>
         </div>
         </div>

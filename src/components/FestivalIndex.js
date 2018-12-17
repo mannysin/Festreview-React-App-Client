@@ -32,11 +32,14 @@ class FestivalIndex extends Component{
     showAllFestivals = () => {
         
         if(this.state.allTheFestivals){
-        //     const allFestivals = this.state.allTheFestivals.filter((eachProject)=>{
-        //         return eachProject.save()
+        //     const allFestivals = this.state.allTheFestivals.filter((eachFestival)=>{
+        //         return eachFestival.save()
         //     })
 
             return this.state.allTheFestivals.map((eachFestival)=>{
+                // const festID = eachFestival.id 
+                // console.log ("here is each fest ID to push------>>>",festID)
+                // console.log ("here is each fest ID to push------>>>",eachFestival._id)
                 return(
                     <div className="festIndex-container" key={eachFestival._id}>
                    
@@ -59,7 +62,7 @@ class FestivalIndex extends Component{
     showLoader = () => {
         if(this.state.loading){
             return(
-                <div >
+                <div>
                     <span>🎶Getting all the festivals...🎶</span>
                     <Loader 
                     type="Audio"
@@ -80,7 +83,7 @@ class FestivalIndex extends Component{
                 {this.showLoader()}
                 </div>
 
-            <div className="list-of-Festivals-container">
+            <div className="list-of-festivals-container">
             {this.showAllFestivals()}
             </div>
 
