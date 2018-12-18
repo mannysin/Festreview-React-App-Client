@@ -72,11 +72,11 @@ class Main extends Component {
                 
                 <div>
                     <Navbar user={this.state.loggedInUser} logout={this.logOutTheUser}/>
+                </div>
 
                 <div className="component-container">
-                {/* <Homepage logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> */}
                 <Switch>
-                    <Route path="/homepage" render = {(props)=> <Homepage {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
+                    <Route exact path="/" render = {(props)=> <Homepage {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
                     <Route exact path="/festivals/:page" render = {(props)=> <FestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
                     <Route exact path="/festivals/na/:page" render = {(props)=> <NAFestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
                     <Route exact path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
@@ -84,8 +84,7 @@ class Main extends Component {
                     <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser} />  } />
             
                 </Switch>
-                </div>
-            {this.showUser()}
+            {/* {this.showUser()} */}
 
 
                 </div>

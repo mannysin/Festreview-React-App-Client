@@ -57,9 +57,9 @@ class SingleReview extends Component{
                             <h2>When: {oneFestival.start_time}</h2>
                             <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
                             <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
-                            <h4>Festival Details: {oneFestival.price}</h4>
+                            <h4>Festival price: {oneFestival.price}</h4>
                             <h6>Festival Details: {oneFestival.description}</h6>
-                </div>
+                    </div>
             )
             
         } else {
@@ -103,7 +103,6 @@ class SingleReview extends Component{
             <div>
                 <button className="delete">See Details!</button>
             </div>
-            {/* {this.hiddenForm()} */}
 
             
 
