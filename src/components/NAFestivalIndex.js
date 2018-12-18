@@ -38,7 +38,13 @@ class FestivalIndex extends Component{
 
             return this.state.allTheFestivals.map((eachFestival)=>{
                 return(
-                    <div className="festIndex-container" key={eachFestival._id}>
+                    <div className="media" key={eachFestival._id}>
+
+
+
+
+                   
+
                    
                     <Link to={`/festival/${eachFestival.id}`}>
                     
@@ -49,7 +55,9 @@ class FestivalIndex extends Component{
                         <h3>Where: {eachFestival.city_name}, {eachFestival.region_name}</h3>
                         <h3>Venue: {eachFestival.venue_name} <br/> {eachFestival.venue_address}</h3>
                         <h6>Festival Details: {eachFestival.description}</h6>
+                      
                     </div>
+                    
             )
             
         })
@@ -59,7 +67,7 @@ class FestivalIndex extends Component{
     showLoader = () => {
         if(this.state.loading){
             return(
-                <div >
+                <div className="loader" >
                     <span>🎶Getting all the festivals...🎶</span>
                     <Loader 
                     type="Audio"
