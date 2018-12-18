@@ -48,20 +48,20 @@ class Navbar extends Component {
                 </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="http://localhost:3000/festivals">
+            <a class="navbar-link" href="http://localhost:3000/festivals/1">
             Festivals
             </a>
             <div class="navbar-dropdown is-boxed">
             <a class="navbar-item">
                 <NavLink to="/festivals/na/1">North America</NavLink>
             </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+            <a class="navbar-item" href="/">
                 South America
             </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+            <a class="navbar-item" href="/">
                 Europe
             </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+            <a class="navbar-item" href="/">
                 Other International
             </a>
             <hr class="navbar-divider"/>

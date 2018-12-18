@@ -41,21 +41,51 @@ class FestivalIndex extends Component{
                     <div className="media" key={eachFestival._id}>
 
 
-
-
-                   
+                    
 
                    
+
+                   
+                        {/* <h3>{eachFestival.title}</h3>
+                        <h3>When: {eachFestival.start_time}</h3>
+                        <h3>Where: {eachFestival.city_name}, {eachFestival.region_name}</h3>
+                        <h3>Venue: {eachFestival.venue_name} <br/> {eachFestival.venue_address}</h3>
+                        <h6>Festival Details: {eachFestival.description}</h6> */}
+                      
+                        <figure className="media-left">
+                            <p className="image is-64x64">
                     <Link to={`/festival/${eachFestival.id}`}>
                     
                     {eachFestival.image ? <img src={eachFestival.image.medium.url} alt={`${eachFestival.title}`} /> : eachFestival.image = <img src="http://54.163.73.103/configfiles/No_Image.png" alt={`${eachFestival.title}`}/>}
                     </Link>
-                        <h3>{eachFestival.title}</h3>
-                        <h3>When: {eachFestival.start_time}</h3>
-                        <h3>Where: {eachFestival.city_name}, {eachFestival.region_name}</h3>
-                        <h3>Venue: {eachFestival.venue_name} <br/> {eachFestival.venue_address}</h3>
-                        <h6>Festival Details: {eachFestival.description}</h6>
-                      
+                            </p>
+                        </figure>
+                        <div className="media-content">
+                            <div className="content">
+                            <p>
+                            <Link to={`/festival/${eachFestival.id}`}>
+                                <strong>{eachFestival.title}</strong>
+                                </Link> <small>Where: {eachFestival.city_name}, {eachFestival.region_name} </small> 
+                                <small>When: {eachFestival.start_time}</small>
+                                <br/>
+                                Description: {eachFestival.description}
+                            </p>
+                            </div>
+                            <nav className="level is-mobile">
+                            <div className="level-left">
+                                <a className="level-item">
+                                <Link to={`/festival/${eachFestival.id}`}>
+                                <span>See Details</span>
+                                
+                                </Link>
+                                </a>
+                                
+                            </div>
+                            </nav>
+                        </div>
+
+
+
                     </div>
                     
             )
@@ -67,7 +97,7 @@ class FestivalIndex extends Component{
     showLoader = () => {
         if(this.state.loading){
             return(
-                <div className="loading" >
+                <div>
                     <span>🎶Getting all the festivals...🎶</span>
                     <Loader 
                     type="Audio"
@@ -88,7 +118,11 @@ class FestivalIndex extends Component{
                 {this.showLoader()}
                 </div>
 
-            <div className="list-of-Festivals-container">
+            <div className="list-of-festivals-container">
+            {/* <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+            </nav> */}
             {this.showAllFestivals()}
             </div>
 
