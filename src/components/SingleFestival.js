@@ -11,8 +11,6 @@ class SingleReview extends Component{
         loading: true,
     }
 
-
-
     componentWillMount(props){
         const theID = this.props.match.params.id;
         console.log ("here is a single festival ID: ------------->>>>>>>", theID)
@@ -59,70 +57,15 @@ class SingleReview extends Component{
                             <h2>When: {oneFestival.start_time}</h2>
                             <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
                             <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
+                            <h4>Festival Details: {oneFestival.price}</h4>
                             <h6>Festival Details: {oneFestival.description}</h6>
-
-                            <form action="/fest/addFestival" method="POST">
-                            <label for="titleInput"></label>
-                            <input id="titleInput" name="title" value={oneFestival.title} className="display"></input>
-
-                            {/* <label for="imageInput"></label>
-                            <input id="imageInput" name="image" value={this.state.value}  className="display"></input> */}
-
-                            <label for="startTime"></label>
-                            <input id="startTime" name="start" value={oneFestival.start_time}  className="display"></input>
-
-                            <label for="descriptionInput"></label>
-                            <input id="descriptionInput" name="description" value={oneFestival.description}  className="display"></input>
-
-                            <label for="locationInput"></label>
-                            <input id="locationInput" name="city" value={oneFestival.city}  className="display"></input>
-                            
-                            <label for="locationInput"></label>
-                            <input id="locationInput" name="country" value={oneFestival.country}  className="display"></input>
-
-                            <label for="venueInput"></label>
-                            <input id="venueInput" name="venueName" value={oneFestival.venue_name}  className="display"></input>
-
-                            <label for="venueInput"></label>
-                            <input id="venueInput" name="venueAddress" value={oneFestival.venue_address}  className="display"></input>
-
-                            <div>
-                            <button type="submit" className="button">Submit a Review</button>
-                            </div>
-
-                            </form>
                 </div>
             )
             
-        } else return
+        } else {
+            
+        }
     }       
-    // }
-
-
-    // hiddenForm = () => {
-    //     return (
-    //     <form action="/fest/addFestival" method="POST">
-    //             <label for="titleInput"></label>
-    //             <input id="titleInput" name="title" value={oneFestival.value} className="display"></input>
-
-                /* <label for="imageInput"></label>
-                <input id="imageInput" name="image" value={this.state.value}  className="display"></input> */
-
-    //             <label for="descriptionInput"></label>
-    //             <input id="descriptionInput" name="description" value={this.state.value}  className="display"></input>
-
-    //             <label for="locationInput"></label>
-    //             <input id="locationInput" name="location" value={this.state.value}  className="display"></input>
-
-    //             <label for="venueInput"></label>
-    //             <input id="venueInput" name="venue" value={this.state.value}  className="display"></input>
-
-    //             <div>
-    //             <button type="submit" className="button">Submit a Review</button>
-    //             </div>
-
-    //             </form>
-    //     )
     // }
 
     showLoader = () => {

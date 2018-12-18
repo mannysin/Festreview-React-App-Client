@@ -72,19 +72,19 @@ class Main extends Component {
                 
                 <div>
                     <Navbar user={this.state.loggedInUser} logout={this.logOutTheUser}/>
-                </div>
 
                 <div className="component-container">
-                {/* <Homepage /> */}
+                {/* <Homepage logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> */}
                 <Switch>
-                    
-                    <Route exact path="/festivals/:page" render = {(props)=> <FestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser}/> }/>
-                    <Route exact path="/festivals/na/:page" render = {(props)=> <NAFestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser}/> }/>
-                    <Route exact path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
-                    <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
-                    <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} />  } />
+                    <Route path="/homepage" render = {(props)=> <Homepage {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
+                    <Route exact path="/festivals/:page" render = {(props)=> <FestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
+                    <Route exact path="/festivals/na/:page" render = {(props)=> <NAFestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
+                    <Route exact path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
+                    <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
+                    <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser} />  } />
             
                 </Switch>
+                </div>
             {this.showUser()}
 
 
