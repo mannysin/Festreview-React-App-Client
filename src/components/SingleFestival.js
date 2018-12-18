@@ -18,7 +18,7 @@ class SingleReview extends Component{
     }
 
     fetchFestival = (id) =>{
-        Axios.get(`http://localhost:4000/api/festival/${id}`)
+        Axios.get(`${process.env.REACT_APP_API_URL}/festival/${id}`)
         .then((responseFromApi)=>{
             console.log(" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< here is a single festival", responseFromApi.data.oneFestival)
 

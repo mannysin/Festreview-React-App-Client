@@ -20,7 +20,7 @@ class FestivalIndex extends Component{
 
 
     fetchFestivals = (pageNumber) =>{
-        Axios.get(`http://localhost:4000/api/festivals/na/${pageNumber}`)
+        Axios.get(`${process.env.REACT_APP_API_URL}/festivals/na/${pageNumber}`)
         .then((responseFromApi)=>{
                 this.setState({allTheFestivals: responseFromApi.data.events.event, loading: false})
                 console.log("yoyoyoyoyo here i am in the USA ", this.state)
@@ -67,7 +67,7 @@ class FestivalIndex extends Component{
     showLoader = () => {
         if(this.state.loading){
             return(
-                <div className="loader" >
+                <div className="loading" >
                     <span>🎶Getting all the festivals...🎶</span>
                     <Loader 
                     type="Audio"
