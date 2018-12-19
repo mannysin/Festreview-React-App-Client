@@ -23,7 +23,7 @@ class Login extends Component {
             this.setState({usernameInput: '', passwordInput: ''})
 
            
-            this.props.history.push('/profile');
+            this.props.history.push(`/`);
         })
         .catch((err)=>{
             console.log('sorry something went wrong', err)

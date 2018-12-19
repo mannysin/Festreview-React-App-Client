@@ -3,6 +3,7 @@ import "../App.css";
 import Axios from 'axios';
 import Loader from 'react-loader-spinner'
 import FestivalIndex from './FestivalIndex';
+import AddNewReview from './AddNewReview'
 
 
 class SingleReview extends Component{
@@ -11,7 +12,7 @@ class SingleReview extends Component{
         loading: true,
     }
 
-    componentWillMount(props){
+    componentDidMount(props){
         const theID = this.props.match.params.id;
         console.log ("here is a single festival ID: ------------->>>>>>>", theID)
         this.fetchFestival(theID)
@@ -77,7 +78,13 @@ class SingleReview extends Component{
                             <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
                             <h4>Festival price: {oneFestival.price}</h4>
                             <h6>Festival Details: {oneFestival.description}</h6>
-                            <h5>Sound Rating: {oneFestival.soundRating}</h5>
+                            <div>
+                            
+
+                            </div>
+                            {/* <h5>Sound Rating: {oneFestival.soundRating}</h5> */}
+                            {/* <h5>Sound Rating: {oneFestival.test}</h5> */}
+                            {/* <h5>Sound Rating: {oneFestival.test2}</h5> */}
 
                             
                         </div>
@@ -115,6 +122,9 @@ class SingleReview extends Component{
 
                 </div>
                 {this.showOneFestival()}
+                <div className="add-new-review-container">
+                 <AddNewReview id={this.state.oneFestival._id} letTheSingleFestComponentKnowThatWeAddedAProject = {this.fetchFestival} />
+                </div>
                 <br />
                 <br />
                 <br />
