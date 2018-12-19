@@ -31,7 +31,7 @@ class Homepage extends Component{
                         <h1>Review some of the best moments of your life</h1>
                         <span>Music festivals help bring people together, share commonalities, and spread love.</span>
                         <br/>
-                        <span>Nothing is perfect, and there is always room to improve. Review the festivals you've attended to help improve the overall experience of other Fest Goers!</span>
+                        <span>Nothing is perfect, and there is always room to improve.<br/> Review the festivals you've attended to help improve the overall experience of other Fest Goers!</span>
                         <br/>
                         <a className = "button is-info">Sign up now!</a>
                         </div>

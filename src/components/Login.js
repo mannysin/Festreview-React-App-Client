@@ -22,8 +22,8 @@ class Login extends Component {
             this.props.logTheUserIntoAppComponent(userFromDB)
             this.setState({usernameInput: '', passwordInput: ''})
 
-           // this.props.history.push('/Navbar');
-            this.props.history.push('/');
+           
+            this.props.history.push('/profile');
         })
         .catch((err)=>{
             console.log('sorry something went wrong', err)
@@ -40,7 +40,7 @@ class Login extends Component {
                 <input type="text" name="usernameInput" value={this.state.usernameInput} required onChange={ e => this.handleChange(e)}/>
                 
                 <label>Password:</label>
-                <input name="passwordInput" value={this.state.passwordInput} required onChange={ e => this.handleChange(e)} />
+                <input type="password" name="passwordInput" value={this.state.passwordInput} required onChange={ e => this.handleChange(e)} />
                 
                 <input type="submit" value="Login" />
             </form>

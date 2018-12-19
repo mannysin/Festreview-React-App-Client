@@ -29,21 +29,21 @@ class SingleReview extends Component{
         })
     }
 
-    handleSubmit = (e) => { 
-        e.preventDefault()
-        const festCopy = [...this.state.oneFestival]
-        festCopy.push( 
-            {oneFestival: this.state.value},
-        )
-        this.setState({
-          oneFestival: festCopy, 
-        })
+    // handleSubmit = (e) => { 
+    //     e.preventDefault()
+    //     const festCopy = [...this.state.oneFestival]
+    //     festCopy.push( 
+    //         {oneFestival: this.state.value},
+    //     )
+    //     this.setState({
+    //       oneFestival: festCopy, 
+    //     })
 
-    }
+    // }
 
     showOneFestival = () => {
        const oneFestival = this.state.oneFestival; 
-        if(oneFestival){
+        if(oneFestival.fromDB !== true){
             console.log(oneFestival)
         //     const allFestivals = this.state.allTheFestivals.filter((eachFestival)=>{
         //         return eachFestival.save()
@@ -59,12 +59,31 @@ class SingleReview extends Component{
                             <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
                             <h4>Festival price: {oneFestival.price}</h4>
                             <h6>Festival Details: {oneFestival.description}</h6>
+                            <div>
+                                <button className="button is-info">No reviews yet? Submit one now!</button>
+                            </div>
                     </div>
-            )
+                )
             
-        } else {
+                } else if (oneFestival.fromDB) {
+                    
+                    return (
+                        <div className="festIndex-container">
+                         <h1>Details Page</h1>
+                         {/* <img src ={oneFestival.images.image.medium.url} alt="Festival Image"/>                        */}
+                            <h1>{oneFestival.title}'s details:</h1>
+                            <h2>When: {oneFestival.start_time}</h2>
+                            <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
+                            <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
+                            <h4>Festival price: {oneFestival.price}</h4>
+                            <h6>Festival Details: {oneFestival.description}</h6>
+                            <h5>Sound Rating: {oneFestival.soundRating}</h5>
+
+                            
+                        </div>
+                    )
             
-        }
+                }
     }       
     // }
 
@@ -100,9 +119,7 @@ class SingleReview extends Component{
                 <br />
                 <br />
                 <br />
-            <div>
-                <button className="delete">See Details!</button>
-            </div>
+            
 
             
 

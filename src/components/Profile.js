@@ -6,8 +6,8 @@ import {Link} from 'react-router-dom'
 
 
 class Profile extends Component {
-      state = { usernameInput: '', passwordInput: '' };
-      service = new UserService();
+    //   state = { usernameInput: '', passwordInput: '' };
+    //   service = new UserService();
     
   
     handleChange = (e) =>{
@@ -23,7 +23,7 @@ class Profile extends Component {
           
             this.setState({usernameInput: '', passwordInput: ''})
 
-            this.props.history.push('/FestivalIndex');
+            
             this.props.history.push('/');
 
         })
@@ -33,11 +33,26 @@ class Profile extends Component {
         })
 
     }
+
+    showUserProfile = () =>{
+        if(this.props.showUser){
+            console.log('asdfasdfasdf', this.props.showUser)
+
+            return(
+                <div>Welcome, {this.props.showUser.username}</div>
+            )
+            } else {
+                return
+            }
+
+        
+    }
   
     render(){
       return(
         <div className="profile">
             Here is your profile
+            {this.showUserProfile()}
         </div>
       )
     }

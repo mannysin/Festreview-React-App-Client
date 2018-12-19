@@ -83,7 +83,7 @@ class Main extends Component {
                     <Route exact path="/festival/:id" render = {(props)=> <SingleFestival {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
                     <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
                     <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser} />  } />
-                    <Route path="/profile" render = {(props)=> <Profile {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
+                    <Route path="/profile" render = {(props)=> <Profile {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser} showUser={this.showUser}/>  } />
             
                 </Switch>
             {/* {this.showUser()} */}
