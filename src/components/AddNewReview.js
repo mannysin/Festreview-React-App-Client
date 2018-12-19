@@ -28,10 +28,13 @@ class AddNewReview extends Component {
         e.preventDefault();
         const soundRating = this.state.soundRating;
         const test = this.state.test;
-        console.log("*****************", this.props, this.state);
+        console.log("*****************", this.props);
         
         Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.id}/addReview`,
-         {newReview: soundRating},
+         {
+             soundRating: soundRating, 
+             test: test
+        },
         //  {withCredentials: true}
          )
          .then((responeFromOurAPI)=>{
@@ -55,10 +58,10 @@ class AddNewReview extends Component {
                 <form onSubmit={this.createANewReview}>
 
                     <label>Sound Rating</label>
-                    <input value={this.state.soundRating} id="soundRating" onChange={this.updateInput} />
+                    <input value={this.state.soundRating} id="soundRating" name="soundRating" onChange={this.updateInput} />
 
                     <label>Description</label>
-                    <input value={this.state.descriptionInput} id="test" onChange={this.updateInput} />
+                    <input value={this.state.descriptionInput} id="test" name="test" onChange={this.updateInput} />
 
                     <button>Save</button>
 

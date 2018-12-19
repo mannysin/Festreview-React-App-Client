@@ -25,6 +25,7 @@ class SingleReview extends Component{
 
             console.log("getting 1 fest.....", id)
             this.setState({oneFestival: responseFromApi.data.oneFestival, loading: false})
+            console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
         })    
         .catch((err)=>{
         })
@@ -114,7 +115,8 @@ class SingleReview extends Component{
 
 
     render(){
-     
+        console.log("%%%%%%%%%%%%%%%%%%%%%%%", this.state);
+        
         return(
             <div>
                 <div>
@@ -123,7 +125,7 @@ class SingleReview extends Component{
                 </div>
                 {this.showOneFestival()}
                 <div className="add-new-review-container">
-                 <AddNewReview id={this.state.oneFestival._id} letTheSingleFestComponentKnowThatWeAddedAProject = {this.fetchFestival} />
+                 <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAProject = {this.fetchFestival} />
                 </div>
                 <br />
                 <br />
