@@ -97,7 +97,7 @@ class FestivalIndex extends Component{
     showLoader = () => {
         if(this.state.loading){
             return(
-                <div>
+                <div className = "loadingText">
                     <span>🎶Getting all the festivals...🎶</span>
                     <Loader 
                     type="Audio"

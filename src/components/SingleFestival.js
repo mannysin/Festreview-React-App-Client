@@ -8,7 +8,7 @@ import AddNewReview from './AddNewReview'
 
 class SingleReview extends Component{
     state={
-        oneFestival: {},
+        oneFestival: {fromDB:false},
         loading: true,
         paramsID: ''
     }
@@ -16,18 +16,27 @@ class SingleReview extends Component{
     componentDidMount(props){
         const theID = this.props.match.params.id;
         // console.log ("here is a single festival ID: ------------->>>>>>>", theID)
-        this.setState({paramsID: theID})
+        //this.setState({paramsID: theID})
         this.fetchFestival(theID)
     }
 
     fetchFestival = (id) =>{
+        const theID = this.props.match.params.id;
+
         Axios.get(`${process.env.REACT_APP_API_URL}/festival/${id}`)
         .then((responseFromApi)=>{
             // console.log(" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< here is a single festival", responseFromApi.data.oneFestival)
 
             // console.log("getting 1 fest.....", id)
-            this.setState({oneFestival: responseFromApi.data.oneFestival, loading: false})
-            // console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
+            console.log(responseFromApi.data)
+            this.setState({
+                oneFestival: responseFromApi.data.oneFestival, 
+                loading: false,
+                paramsID: theID
+            }, ()=>{
+                console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
+
+            })
         })    
         .catch((err)=>{
         })
@@ -46,7 +55,7 @@ class SingleReview extends Component{
     // }
 
     showOneFestival = () => {
-       const oneFestival = this.state.oneFestival; 
+        let oneFestival = this.state.oneFestival; 
         if(oneFestival.fromDB !== true){
             console.log(oneFestival)
         //     const allFestivals = this.state.allTheFestivals.filter((eachFestival)=>{
@@ -56,7 +65,7 @@ class SingleReview extends Component{
                 return(
                     <div className="festIndex-container">
                          <h1>Details Page</h1>
-                         {/* <img src ={oneFestival.images.image.medium.url} alt="Festival Image"/>                        */}
+                         
                             <h1>{oneFestival.title}'s details:</h1>
                             <h2>When: {oneFestival.start_time}</h2>
                             <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
@@ -74,7 +83,7 @@ class SingleReview extends Component{
                     return (
                         <div className="festIndex-container">
                          <h1>Details Page</h1>
-                         {/* <img src ={oneFestival.images.image.medium.url} alt="Festival Image"/>                        */}
+                         
                             <h1>{oneFestival.title}'s details:</h1>
                             <h2>When: {oneFestival.start_time}</h2>
                             <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
@@ -100,7 +109,7 @@ class SingleReview extends Component{
     showLoader = () => {
         if(this.state.loading){
             return(
-                <div>
+                <div className = "loadingText">
                     <span>🎶Getting festival details...🎶</span>
                     <Loader 
                     type="Puff"
