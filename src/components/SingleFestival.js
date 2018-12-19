@@ -10,22 +10,24 @@ class SingleReview extends Component{
     state={
         oneFestival: {},
         loading: true,
+        paramsID: ''
     }
 
     componentDidMount(props){
         const theID = this.props.match.params.id;
-        console.log ("here is a single festival ID: ------------->>>>>>>", theID)
+        // console.log ("here is a single festival ID: ------------->>>>>>>", theID)
+        this.setState({paramsID: theID})
         this.fetchFestival(theID)
     }
 
     fetchFestival = (id) =>{
         Axios.get(`${process.env.REACT_APP_API_URL}/festival/${id}`)
         .then((responseFromApi)=>{
-            console.log(" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< here is a single festival", responseFromApi.data.oneFestival)
+            // console.log(" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< here is a single festival", responseFromApi.data.oneFestival)
 
-            console.log("getting 1 fest.....", id)
+            // console.log("getting 1 fest.....", id)
             this.setState({oneFestival: responseFromApi.data.oneFestival, loading: false})
-            console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
+            // console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
         })    
         .catch((err)=>{
         })
@@ -125,7 +127,7 @@ class SingleReview extends Component{
                 </div>
                 {this.showOneFestival()}
                 <div className="add-new-review-container">
-                 <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAProject = {this.fetchFestival} />
+                 <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAProject = {() => this.fetchFestival(this.state.paramsID)} />
                 </div>
                 <br />
                 <br />

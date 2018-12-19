@@ -6,14 +6,14 @@ import FestivalIndex from './FestivalIndex';
 
 class AddNewReview extends Component {
     state={
-        overallRating: Number,
-        soundRating: Number,
-        artRating: Number,
-        foodRating: Number,
-        venueRating: Number,
-        stageRating: Number,
-        activitiesRating: Number,
-        vibeRating: Number,
+        overallRating: 0,
+        soundRating: 0,
+        artRating: 0,
+        foodRating: 0,
+        venueRating: 0,
+        stageRating: 0,
+        activitiesRating: 0,
+        vibeRating: 0,
         test: '',
         test2: '',
     }
@@ -35,11 +35,23 @@ class AddNewReview extends Component {
              soundRating: soundRating, 
              test: test
         },
-        //  {withCredentials: true}
+         {withCredentials: true}
          )
          .then((responeFromOurAPI)=>{
             console.log('success', responeFromOurAPI)
-
+            this.setState({
+                overallRating: 0,
+                soundRating: 0,
+                artRating: 0,
+                foodRating: 0,
+                venueRating: 0,
+                stageRating: 0,
+                activitiesRating: 0,
+                vibeRating: 0,
+                test: '',
+                test2: '',
+                descriptionInput: ''
+            })
             this.props.letTheSingleFestComponentKnowThatWeAddedAProject();
            
 
