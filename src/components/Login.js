@@ -34,15 +34,18 @@ class Login extends Component {
   
     render(){
       return(
-        <div>
-            <form onSubmit={this.handleFormSubmit}>
-                <label>Username:</label>
-                <input type="text" name="usernameInput" value={this.state.usernameInput} required onChange={ e => this.handleChange(e)}/>
+        <div className="signup-container logIn">
+            <form className="field formBG" onSubmit={this.handleFormSubmit}>
+                <label className="label">Username:</label>
+                <input className="input" type="text" name="usernameInput" value={this.state.usernameInput} required onChange={ e => this.handleChange(e)}/>
                 
-                <label>Password:</label>
-                <input type="password" name="passwordInput" value={this.state.passwordInput} required onChange={ e => this.handleChange(e)} />
+                <label className="label">Password:</label>
+                <input className="input" type="password" name="passwordInput" value={this.state.passwordInput} required onChange={ e => this.handleChange(e)} />
                 
-                <input type="submit" value="Login" />
+                <input className="button is-info" type="submit" value="Login" />
+                <p className="help loadingText">Don't have an account? 
+                    <Link to={"/signup"}> Signup now!</Link>
+                </p>
             </form>
 
 

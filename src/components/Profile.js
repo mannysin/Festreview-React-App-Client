@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom'
 
 class Profile extends Component {
       state = { 
-           loggedInUser: null, 
+           loggedInUser: null,
+           editing: false, 
         };
     //   service = new UserService();
     
@@ -34,43 +35,58 @@ class Profile extends Component {
     }
 
 
-    handleFormSubmit = (e) =>{
+    editProfile = (e) => {
         e.preventDefault();
-        this.service.signup(this.state.usernameInput, this.state.passwordInput)
-        .then((userFromDB)=>{
-            this.props.logTheUserIntoAppComponent(userFromDB)
-          
-            this.setState({usernameInput: '', passwordInput: ''})
-
-            
-            this.props.history.push('/');
+        Axios.post(`${process.env.REACT_APP_API_URL}//update`, 
+        {theTitle: this.state.titleInput, theDescription: this.state.descInput})
+        .then(()=>{
+            this.setState({editing: false});
+        })
+        .catch(()=>{
 
         })
-        .catch((err)=>{
-            console.log('sorry something went wrong', err)
+    }
 
-        })
+    toggleForm = () =>{
+        this.setState({editing: true})
 
     }
+
 
     showUserProfile = () =>{
         if(this.state.loggedInUser){
             const oneUser = this.state.loggedInUser
-            console.log('SHOW USER PROFILE------------', oneUser)
+            // console.log('SHOW USER PROFILE------------', oneUser)
+            
 
+
+
+                if(this.state.editing){
+                    // console.log('editing now b', oneUser.firstName)
+                    return(
+                        <form className = "field"onSubmit={this.editProfile}>
+                        <label className="label">First Name:</label>
+                        <input className="input" value={oneUser.firstName} onChange={this.handleChange} id="titleInput"/>
+                        <label className="label">Last Name:</label>
+                        <input className="input" value={oneUser.lastName} onChange={this.handleChange} id="descInput"/>
+                        <button>submit changes</button>
+                    </form>
+                )
+    
+            }  else{
             return(
                 <div>
                     <p>Have a look at your info below:</p>
 
                     <div class="profile">
 
-                    <img src="" alt="Your Profile Pic" class="img-thumbnail"/>
+                    <img src={oneUser.avatar} alt="Your Profile Pic" class="img-thumbnail"/>
                     <br/>
                     Full Name: {oneUser.firstName} {oneUser.lastName}
                     
                     <div>
 
-                    Bio: 
+                    Bio: {oneUser.bio}
                     
 
                     </div>
@@ -103,21 +119,18 @@ class Profile extends Component {
 
                     
                     <div>
-
-                        <h4>Need to update your account? <a href="/profile/{{theUser._id}}/edit-profile">Edit Your Profile</a></h4>
-
+                        <h4>Need to update your account?</h4>
+                        <button class="button is-warning" onClick={this.toggleForm} >Edit your Profile!</button>
                     </div>
 
                     </div>
                     </div>
             )
-            } else {
-                return
-            }
-
         
+        }
     }
-  
+}
+
     render(){
       return(
         <div className="profile">

@@ -73,12 +73,12 @@ class FestivalIndex extends Component{
                             </div>
                             <nav className="level is-mobile">
                             <div className="level-left">
-                                <a className="level-item">
-                                <Link to={`/festival/${eachFestival.id}`}>
+                                
+                                <Link className="level-item" to={`/festival/${eachFestival.id}`}>
                                 <span>See Details</span>
                                 
                                 </Link>
-                                </a>
+                                
                                 
                             </div>
                             </nav>
@@ -113,21 +113,17 @@ class FestivalIndex extends Component{
 
     render(){
         return(
-            <div>
-                <div>
-                {this.showLoader()}
-                </div>
-
             <div className="list-of-festivals-container">
-            {/* <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
-                <a class="pagination-previous">Previous</a>
-                <a class="pagination-next">Next page</a>
-            </nav> */}
-            {this.showAllFestivals()}
+            <div>
+            {this.showLoader()}
             </div>
 
+        <div>
+        {this.showAllFestivals()}
+        </div>
 
-            </div>
+
+        </div>
         )
     }
 

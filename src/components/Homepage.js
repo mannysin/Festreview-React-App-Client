@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "../App.css";
 import Axios from 'axios';
+import {Link} from 'react-router-dom'
 
 class Homepage extends Component{
 
@@ -11,10 +12,12 @@ class Homepage extends Component{
                 <div>
                     <div id="home" className="bg">
                         <div>
-                            <img src="/festreview-logo.png" alt=""></img>
+                            <div className="logoBG">
+                             <img src="/festreview-logo.png" alt="festReview Logo"></img>
+
+                            </div>
                             <br/>
                         <span>Real Reviews, from Real Festival Goers!</span>
-                        <br/>
                         <span>Plan your next adventure or relive a wonderful experience.</span>
                         </div>
                     </div>
@@ -23,17 +26,19 @@ class Homepage extends Component{
                         <h1>Find Yourself</h1>
                         <span>Music is what moves us. No matter your taste, FestReview.com will have the music fest for you!</span>
                         <br/>
-                        <a className = "button is-info">View Festivals</a>
+                        <br/>
+                        <br/>
+                        <Link className = "button is-info" to={`/festivals/1`}> See all the Festivals</Link>
                         </div>
                     </div>
                     <div id="reviews" className="bg">
                         <div>
-                        <h1>Review some of the best moments of your life</h1>
                         <span>Music festivals help bring people together, share commonalities, and spread love.</span>
+                        <h1>Review some of the best moments of your life.</h1>
                         <br/>
                         <span>Nothing is perfect, and there is always room to improve.<br/> Review the festivals you've attended to help improve the overall experience of other Fest Goers!</span>
                         <br/>
-                        <a className = "button is-info">Sign up now!</a>
+                        <Link className = "button is-info" to={`/login`}> Login</Link>
                         </div>
                     </div>
                     <div id="aboutUs" className="bg">
@@ -43,7 +48,7 @@ class Homepage extends Component{
                         <br/>
                         <span>Every festival should feel magical and secure.</span>
                         <br/>
-                        <a className = "button is-info">Get to know us better</a>
+                        <Link className = "button is-info" to={`/login`}> About Us</Link>
                         </div>
                     </div>
                     <div className="newsletter">

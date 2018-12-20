@@ -11,6 +11,7 @@ class Navbar extends Component {
             return (
                 <span>
                     <NavLink to="/signup"> Sign Up For Account</NavLink>
+                    &nbsp;or
                  <NavLink to="/login"> Login </NavLink>
              
              </span>
@@ -18,8 +19,9 @@ class Navbar extends Component {
         } else {
             return (
                     <span>
-                      <NavLink to="/profile"> Profile </NavLink>
-                      <button onClick = {this.props.logout}>Logout</button>
+                      <NavLink to="/profile/:id"> Profile </NavLink>
+                      /&nbsp;
+                      <a onClick = {this.props.logout}>Logout</a>
                       
                     </span>
             )
@@ -43,7 +45,7 @@ class Navbar extends Component {
 
         <div  className="navbar-menu">
             <div className="navbar-end">
-                <a className="navbar-item">
+                <a className="navbar-item" href="/">
                     <NavLink to="/">Home</NavLink>
                 </a>
 
@@ -52,7 +54,7 @@ class Navbar extends Component {
             Festivals
             </a>
             <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item">
+            <a class="navbar-item" href="/festivals/na/1">
                 <NavLink to="/festivals/na/1">North America</NavLink>
             </a>
             <a class="navbar-item" href="/">
@@ -65,15 +67,15 @@ class Navbar extends Component {
                 Other International
             </a>
             <hr class="navbar-divider"/>
-            <a className="navbar-item is-active">
-                        <NavLink to="/festivals/1">All Festivals</NavLink>
+            <a className="navbar-item is-active" href="/festivals/1">
+                        <NavLink className="navbar-item is-active" to="/festivals/1">All Festivals</NavLink>
                     </a>
             </div>
         </div>
                 <a className="navbar-item">
                     {this.showLogIn()}
                 </a>
-                <a className="navbar-item">
+                <a className="navbar-item" href="/">
                 <NavLink to="/">About Us</NavLink>
                 </a>
         </div>

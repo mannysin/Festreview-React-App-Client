@@ -63,42 +63,44 @@ class SingleReview extends Component{
         //     })
 
                 return(
-                    <div className="festIndex-container">
-                         <h1>Details Page</h1>
-                         
-                            <h1>{oneFestival.title}'s details:</h1>
-                            <h2>When: {oneFestival.start_time}</h2>
-                            <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
-                            <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
-                            <h4>Festival price: {oneFestival.price}</h4>
-                            <h6>Festival Details: {oneFestival.description}</h6>
+                    <div className="festIndex-container tile is-ancestor">
+
+                    <article class="tile is-child notification has-background-grey-lighter		">
+                            <p class="title">{oneFestival.title}'s details:</p>
+                            <p class="subtitle">When: {oneFestival.start_time}</p>
+                            <div class="content">
+                                <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
+                                <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
+                                <h4>Festival price: {oneFestival.price}</h4>
+                                <h6>Festival Details: {oneFestival.description}</h6>
+                            </div>
                             <div>
                                 <button className="button is-info">No reviews yet? Submit one now!</button>
                             </div>
-                    </div>
+                        </article>
+
+                            
+                        </div>
                 )
             
                 } else if (oneFestival.fromDB) {
                     
                     return (
-                        <div className="festIndex-container">
-                         <h1>Details Page</h1>
-                         
-                            <h1>{oneFestival.title}'s details:</h1>
-                            <h2>When: {oneFestival.start_time}</h2>
-                            <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
-                            <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
-                            <h4>Festival price: {oneFestival.price}</h4>
-                            <h6>Festival Details: {oneFestival.description}</h6>
-                            <div>
-                            
-
-                            </div>
-                            {/* <h5>Sound Rating: {oneFestival.soundRating}</h5> */}
-                            {/* <h5>Sound Rating: {oneFestival.test}</h5> */}
-                            {/* <h5>Sound Rating: {oneFestival.test2}</h5> */}
-
-                            
+                        <div className="festIndex-container tile is-ancestor">
+                            <article class="tile is-child notification has-background-grey-lighter		">
+                                <p class="title">{oneFestival.title}'s details:</p>
+                                <p class="subtitle">When: {oneFestival.start_time}</p>
+                                <div class="content">
+                                    <h3>Where: {oneFestival.city}, {oneFestival.country}</h3>
+                                    <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
+                                    <h4>Festival price: {oneFestival.price}</h4>
+                                    <h6>Festival Details: {oneFestival.description}</h6>
+                                    {/* <h5>Sound Rating: {oneFestival.reviews[0].soundRating}</h5> */}
+                                </div>
+                                <div className="add-new-review-container">
+                                    <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} />
+                                </div>
+                            </article>
                         </div>
                     )
             
@@ -129,24 +131,21 @@ class SingleReview extends Component{
         console.log("%%%%%%%%%%%%%%%%%%%%%%%", this.state);
         
         return(
-            <div>
+            <div className="list-of-festivals-container">
                 <div>
-                {this.showLoader()}
-
+                    {this.showLoader()}
                 </div>
+
+                <div>
                 {this.showOneFestival()}
-                <div className="add-new-review-container">
+                {/* <div className="add-new-review-container">
                  <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAProject = {() => this.fetchFestival(this.state.paramsID)} />
+                </div> */}
                 </div>
-                <br />
-                <br />
-                <br />
-                <br />
-            
 
-            
 
-        </div>
+            </div>
+
         )
     }
 

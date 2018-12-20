@@ -75,7 +75,7 @@ class Main extends Component {
                     <Navbar user={this.state.loggedInUser} logout={this.logOutTheUser}/>
                 </div>
 
-                <div className="component-container">
+                <div>
                 <Switch>
                     <Route exact path="/" render = {(props)=> <Homepage {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
                     <Route exact path="/festivals/:page" render = {(props)=> <FestivalIndex {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/> }/>
