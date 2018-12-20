@@ -14,6 +14,7 @@ class AddNewReview extends Component {
         stageRating: 0,
         activitiesRating: 0,
         vibeRating: 0,
+        idAPI: '',
     }
 
     updateInput = (e) => {
@@ -32,6 +33,7 @@ class AddNewReview extends Component {
         const stageRating = this.state.stageRating;
         const activitiesRating = this.state.activitiesRating;
         const vibeRating = this.state.vibeRating;
+        const idAPI = this.props.id
 
         
         console.log("*****************", this.props);
@@ -46,6 +48,7 @@ class AddNewReview extends Component {
              stageRating: stageRating,
              activitiesRating: activitiesRating,
              vibeRating: vibeRating,
+             idAPI: idAPI,
         },
          {withCredentials: true}
          )
@@ -60,6 +63,7 @@ class AddNewReview extends Component {
                 stageRating: 0,
                 activitiesRating: 0,
                 vibeRating: 0,
+                oneFestival: responseFromOurAPI
             })
             this.props.letTheSingleFestComponentKnowThatWeAddedAFestival();
            
@@ -69,6 +73,24 @@ class AddNewReview extends Component {
          .catch((err)=>{
             console.log('error creating review', err)
          })
+    }
+
+    deleteFestival = () =>{
+        Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.id}/delete`, {})
+        .then(()=> {
+            console.log('hmmmm')
+            // if(!props.user){
+
+            // }
+        })
+        .then(()=>{
+            
+            this.props.history.push('/');
+            // this is how your redirect in react
+        })
+        .catch(()=>{
+
+        })
     }
 
 
@@ -103,6 +125,10 @@ class AddNewReview extends Component {
                     <input className="input" type="number" min="0" max ="10" id="vibeRating" name="vibeRating" onChange={this.updateInput} />
 
                     <input className="button is-info" type="submit" value="Add Review" />
+
+                    <div>
+                        <button onClick={this.deleteFestival} className="delete">Delete This Project</button>
+                    </div> 
 
                 </form>
                 

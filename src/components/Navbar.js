@@ -19,7 +19,7 @@ class Navbar extends Component {
         } else {
             return (
                     <span>
-                      <NavLink to="/profile/:id"> Profile </NavLink>
+                      <NavLink to={`/profile/${this.props.user._id}`}> Profile </NavLink>
                       /&nbsp;
                       <a onClick = {this.props.logout}>Logout</a>
                       

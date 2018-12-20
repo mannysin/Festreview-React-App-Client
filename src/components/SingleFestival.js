@@ -10,14 +10,19 @@ class SingleReview extends Component{
     state={
         oneFestival: {fromDB:false},
         loading: true,
-        paramsID: ''
+        paramsID: '',
+        allReviews: [],
     }
 
     componentDidMount(props){
         const theID = this.props.match.params.id;
+        // const reviewID = this.props.match.params.id;
         // console.log ("here is a single festival ID: ------------->>>>>>>", theID)
+        // console.log ("here is a single review ID: ------------->>>>>>>", reviewID)
+
         //this.setState({paramsID: theID})
         this.fetchFestival(theID)
+        this.fetchReviews(theID)
     }
 
     fetchFestival = (id) =>{
@@ -34,13 +39,61 @@ class SingleReview extends Component{
                 loading: false,
                 paramsID: theID
             }, ()=>{
-                console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
+                // console.log(" the state now  <<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>", this.state)
 
             })
         })    
         .catch((err)=>{
         })
     }
+
+    fetchReviews = (id) =>{
+        console.log('fetching review', id)
+
+        Axios.get(`${process.env.REACT_APP_API_URL}/reviews/${id}`)
+        .then((responseFromApi)=>{
+            console.log('hmmmmmmmmmmmm', responseFromApi)
+            this.setState({allReviews: responseFromApi.data.reverse()}) 
+        })
+        .catch((err)=>{
+        })
+    }
+
+    reloadPage = () =>{
+        Axios.get(`${process.env.REACT_APP_API_URL}/festival/`+this.props.match.params.id)
+        .then((id)=>{
+            // console.log('huhuh', id)
+            this.props.history.push(`/festival/`+this.props.match.params.id);
+            
+        })
+        .catch(()=>{
+
+        })
+    }
+
+    showOneReview = () => {
+        if(this.state.oneFestival.fromDB){
+       
+            this.state.oneFestival.reviews.forEach((eachReview, i)=> {
+            console.log('holy moly ', eachReview, i);
+            });
+        return (
+            <div>
+                Sound Rating: {this.state.eachReview}
+                {/* Sound Rating: {eachReview} */}
+            </div>
+         )
+        
+            //  console.log('holy moly2', eachReview)
+            //  return (
+            //     <div>
+            //         Sound Rating: {this.state.allTheReviews}
+            //         Sound Rating: {allTheReviews}
+            //     </div>
+            //  )
+         }
+    }
+
 
     // handleSubmit = (e) => { 
     //     e.preventDefault()
@@ -57,15 +110,13 @@ class SingleReview extends Component{
     showOneFestival = () => {
         let oneFestival = this.state.oneFestival; 
         if(oneFestival.fromDB !== true){
-            console.log(oneFestival)
         //     const allFestivals = this.state.allTheFestivals.filter((eachFestival)=>{
         //         return eachFestival.save()
         //     })
 
                 return(
                     <div className="festIndex-container tile is-ancestor">
-
-                    <article class="tile is-child notification has-background-grey-lighter		">
+                        <article class="tile is-child notification has-background-grey-lighter		">
                             <p class="title">{oneFestival.title}'s details:</p>
                             <p class="subtitle">When: {oneFestival.start_time}</p>
                             <div class="content">
@@ -75,16 +126,20 @@ class SingleReview extends Component{
                                 <h6>Festival Details: {oneFestival.description}</h6>
                             </div>
                             <div>
-                                <button className="button is-info">No reviews yet? Submit one now!</button>
+                                <button onClick = {this.reloadPage} className="button is-info">No reviews yet? Submit one now!</button>
                             </div>
                         </article>
-
-                            
-                        </div>
+                    </div>
                 )
             
                 } else if (oneFestival.fromDB) {
                     
+                    // const allReviews = this.state.oneFestival.reviews.forEach((eachReview, i)=> {
+                    //     console.log('holy moly ', eachReview, i);
+                    //     return eachReview[i]
+                    //  });
+ 
+
                     return (
                         <div className="festIndex-container tile is-ancestor">
                             <article class="tile is-child notification has-background-grey-lighter		">
@@ -95,10 +150,11 @@ class SingleReview extends Component{
                                     <h3>Venue: {oneFestival.venue_name} <br/> {oneFestival.venue_address}</h3>
                                     <h4>Festival price: {oneFestival.price}</h4>
                                     <h6>Festival Details: {oneFestival.description}</h6>
-                                    {/* <h5>Sound Rating: {oneFestival.reviews[0].soundRating}</h5> */}
+                                    <h4>{this.showOneReview()}</h4>
+                                    <h5>Sound Rating: </h5>
                                 </div>
                                 <div className="add-new-review-container">
-                                    <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} />
+                                    <AddNewReview id={this.state.oneFestival.idAPI} oneFest={this.state.oneFestival} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} />
                                 </div>
                             </article>
                         </div>
@@ -109,7 +165,7 @@ class SingleReview extends Component{
     // }
 
     showLoader = () => {
-        if(this.state.loading){
+        if(this.state.loading && !this.state.oneFestival.fromDB){
             return(
                 <div className = "loadingText">
                     <span>🎶Getting festival details...🎶</span>

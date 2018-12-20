@@ -86,7 +86,7 @@ class Main extends Component {
                     <Route exact path="/profile/:id" render = {(props)=> <Profile {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
             
                 </Switch>
-            {/* {this.showUser()} */}
+                {/* {this.showUser()} */}
 
 
                 </div>
