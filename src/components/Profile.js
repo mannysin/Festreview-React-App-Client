@@ -68,16 +68,18 @@ class Profile extends Component {
                 if(this.state.editing){
                     // console.log('editing now b', oneUser.firstName)
                     return(
-                        <div>
+                        <div className="list-of-festivals-container">
                             <form className = "field" onSubmit={this.editProfile}>
                             <label className="label">Avatar:</label>
-                            <input className="input" onChange={this.handleChange} id="avatar"/>
+                            <input className="input" value={this.state.avatar} onChange={this.handleChange} id="avatar"/>
                             <label className="label">First Name:</label>
-                            <input className="input" onChange={this.handleChange} id="firstName"/>
+                            <input className="input" value={this.state.firstName} onChange={this.handleChange} id="firstName"/>
                             <label className="label">Last Name:</label>
-                            <input className="input" onChange={this.handleChange} id="lastName"/>
-                            <label className="label">Bio:</label>
-                            <input className="input" onChange={this.handleChange} id="bio"/>
+                            <input className="input" value={this.state.lastName} onChange={this.handleChange} id="lastName"/>
+                            <label for="bio" className="label">Bio:</label>
+                            <textarea className="input" id="bio" rows="4" cols = '40' value={this.state.bio} onChange={this.handleChange} />
+
+                            {/* <input className="input" type="textarea" value={this.state.bio} onChange={this.handleChange} id="bio"/> */}
                             <button onClick={this.editProfile}>Submit changes</button>
                             </form>
                         </div>
@@ -85,7 +87,7 @@ class Profile extends Component {
     
             }  else{
             return(
-                <div className="list-of-festivals-container">
+                <div className="profile">
                     <p>Have a look at your profile below:</p>
 
                     <div class="profile">
@@ -104,7 +106,7 @@ class Profile extends Component {
                     <div>
                         Your reviews:
 
-                        {oneUser.reviews}
+                        {/* {oneUser.reviews} */}
                         
                         <div class="eachRieview">
                             {/* <a href={`/reviews/${this._id}`}></a> */}
@@ -145,8 +147,7 @@ class Profile extends Component {
 
     render(){
       return(
-        <div className="profile">
-            Here is your profile
+        <div className="list-of-festivals-container">
             {this.showUserProfile()}
         </div>
       )

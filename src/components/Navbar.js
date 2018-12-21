@@ -50,7 +50,7 @@ class Navbar extends Component {
                 </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="http://localhost:3000/festivals/1">
+            <a class="navbar-link" href="/festivals/1">
             Festivals
             </a>
             <div class="navbar-dropdown is-boxed">
@@ -76,7 +76,7 @@ class Navbar extends Component {
                     {this.showLogIn()}
                 </a>
                 <a className="navbar-item" href="/">
-                <NavLink to="/">About Us</NavLink>
+                <NavLink to="/aboutus">About Us</NavLink>
                 </a>
         </div>
         </div>

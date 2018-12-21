@@ -15,6 +15,7 @@ import FestivalIndex from './components/FestivalIndex';
 import NAFestivalIndex from './components/NAFestivalIndex';
 import SingleFestival from './components/SingleFestival';
 import Profile  from './components/Profile';
+import AboutUs from './components/AboutUs'
 
 class Main extends Component {
     state={
@@ -84,7 +85,7 @@ class Main extends Component {
                     <Route path="/signup" render = {(props)=> <Signup {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
                     <Route path="/login" render = {(props)=> <Login {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser} />  } />
                     <Route exact path="/profile/:id" render = {(props)=> <Profile {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser}/>  } />
-            
+                    <Route path="/aboutus" render = {(props)=> <AboutUs {...props} logTheUserIntoAppComponent = {this.logInTheUser} logout={this.logOutTheUser} />  } />
                 </Switch>
                 {/* {this.showUser()} */}
 

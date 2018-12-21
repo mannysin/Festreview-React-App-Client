@@ -18,6 +18,10 @@
   }
 }
 
+/* .navbar-item{
+  display:flex !important;
+} */
+
 .signup-container {
   /* margin-top: 5.5vh; */
   padding: 30vw;
@@ -163,3 +167,8 @@
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.unsplash.com/photo-1468965949050-fcd0d3a590f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2665&q=80);
 }
+
+.profile > img{
+  width: 20%;
+  border-radius: 50%;
+ }

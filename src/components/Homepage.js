@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "../App.css";
 import Axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 
 class Homepage extends Component{
 
@@ -48,7 +48,7 @@ class Homepage extends Component{
                         <br/>
                         <span>Every festival should feel magical and secure.</span>
                         <br/>
-                        <Link className = "button is-info" to={`/login`}> About Us</Link>
+                        <NavLink className = "button is-info" to={`/aboutus`}> About Us</NavLink>
                         </div>
                     </div>
                     <div className="newsletter">
