@@ -70,10 +70,11 @@ class SingleReview extends Component{
     }
 
     showOneReview = () => {
+        console.log(this)
         if(this.state.oneFestival.fromDB){
-       
+            console.log(this)
             return this.state.oneFestival.reviews.map((eachReview, i)=> {
-                // console.log('holy moly ', eachReview, i);
+                console.log('holy moly ', eachReview, i);
                 return (
                     <div>
                         <div>Reviewed By: {eachReview.overallRating}</div>
@@ -86,7 +87,7 @@ class SingleReview extends Component{
                         <div>Activities Ratings: {eachReview.activitiesRating}</div>
                         <div>Venue Ratings: {eachReview.venueRating}</div>
                         <div>
-                            <button onClick={this.deleteReview} className="delete">Delete This Review</button>
+                            <button className="delete">Delete This Review</button>
                         </div> 
                         <hr></hr>
                     </div>
@@ -155,7 +156,7 @@ class SingleReview extends Component{
                                     <h4>{this.showOneReview()}</h4>
                                 </div>
                                 <div className="add-new-review-container">
-                                    {/* <AddNewReview logout={() => this.deleteReview(this.state.paramsID)} id={this.state.oneFestival.idAPI} oneFest={this.state.oneFestival} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} /> */}
+                                    <AddNewReview  oneFest={this.state.oneFestival} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} />
                                 </div>
                             </article>
                         </div>
@@ -182,22 +183,22 @@ class SingleReview extends Component{
             }
     }
 
-    deleteReview = () =>{
-        Axios.post(`${process.env.REACT_APP_API_URL}/${this.state.reviews._id}/delete`, {})
-        .then(()=> {
-            console.log('hmmmm')
-            // if(!props.user){
+    // deleteReview = () =>{
+    //     Axios.post(`${process.env.REACT_APP_API_URL}/${this.state.reviews._id}/delete`, {})
+    //     .then(()=> {
+    //         console.log('hmmmm')
+    //         // if(!props.user){
 
-            // }
-        })
-        .then(()=>{
+    //         // }
+    //     })
+    //     .then(()=>{
             
-            window.location.reload()
-        })
-        .catch(()=>{
+    //         window.location.reload()
+    //     })
+    //     .catch(()=>{
 
-        })
-    }
+    //     })
+    // }
 
 
 

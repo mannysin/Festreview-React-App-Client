@@ -70,7 +70,7 @@ class Profile extends Component {
                     return(
                         <div className="list-of-festivals-container">
                             <form className = "field" onSubmit={this.editProfile}>
-                            <label className="label">Avatar:</label>
+                            <label className="label" placeholder="Image link">Avatar:</label>
                             <input className="input" value={this.state.avatar} onChange={this.handleChange} id="avatar"/>
                             <label className="label">First Name:</label>
                             <input className="input" value={this.state.firstName} onChange={this.handleChange} id="firstName"/>

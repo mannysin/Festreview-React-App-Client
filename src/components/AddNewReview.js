@@ -38,7 +38,7 @@ class AddNewReview extends Component {
         
         console.log("*****************", this.props);
         
-        Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.id}/addReview`,
+        Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.oneFest.idAPI}/addReview`,
          {
              overallRating: overallRating,
              soundRating: soundRating,
@@ -126,7 +126,7 @@ class AddNewReview extends Component {
                     <input className="button is-info" type="submit" value="Add Review" />
 
                     <div>
-                        <button onClick={this.props.logout()} className="delete">Delete This Project</button>
+                        <button className="delete">Delete This Review</button>
                     </div> 
 
                 </form>
