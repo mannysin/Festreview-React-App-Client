@@ -31,16 +31,25 @@ class Profile extends Component {
     }
   
     handleChange = (e) =>{
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.id]: e.target.value})
     }
 
 
     editProfile = (e) => {
         e.preventDefault();
-        Axios.post(`${process.env.REACT_APP_API_URL}//update`, 
-        {theTitle: this.state.titleInput, theDescription: this.state.descInput})
+        Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.match.params.id}/update`, 
+        {firstName: this.state.firstName, lastName: this.state.lastName, avatar: this.state.avatar, bio: this.state.bio})
         .then(()=>{
-            this.setState({editing: false});
+            this.setState({
+                editing: false,
+                loggedInUser: {
+                    ...this.state.loggedInUser, 
+                    firstName: this.state.firstName, 
+                    lastName: this.state.lastName,
+                    avatar: this.state.avatar,
+                    bio: this.state.bio
+                }
+            });
         })
         .catch(()=>{
 
@@ -52,31 +61,32 @@ class Profile extends Component {
 
     }
 
-
     showUserProfile = () =>{
         if(this.state.loggedInUser){
             const oneUser = this.state.loggedInUser
             // console.log('SHOW USER PROFILE------------', oneUser)
-            
-
-
-
                 if(this.state.editing){
                     // console.log('editing now b', oneUser.firstName)
                     return(
-                        <form className = "field"onSubmit={this.editProfile}>
-                        <label className="label">First Name:</label>
-                        <input className="input" value={oneUser.firstName} onChange={this.handleChange} id="titleInput"/>
-                        <label className="label">Last Name:</label>
-                        <input className="input" value={oneUser.lastName} onChange={this.handleChange} id="descInput"/>
-                        <button>submit changes</button>
-                    </form>
+                        <div>
+                            <form className = "field" onSubmit={this.editProfile}>
+                            <label className="label">Avatar:</label>
+                            <input className="input" onChange={this.handleChange} id="avatar"/>
+                            <label className="label">First Name:</label>
+                            <input className="input" onChange={this.handleChange} id="firstName"/>
+                            <label className="label">Last Name:</label>
+                            <input className="input" onChange={this.handleChange} id="lastName"/>
+                            <label className="label">Bio:</label>
+                            <input className="input" onChange={this.handleChange} id="bio"/>
+                            <button onClick={this.editProfile}>Submit changes</button>
+                            </form>
+                        </div>
                 )
     
             }  else{
             return(
-                <div>
-                    <p>Have a look at your info below:</p>
+                <div className="list-of-festivals-container">
+                    <p>Have a look at your profile below:</p>
 
                     <div class="profile">
 
@@ -93,9 +103,11 @@ class Profile extends Component {
 
                     <div>
                         Your reviews:
+
+                        {oneUser.reviews}
                         
                         <div class="eachRieview">
-                            <a href="/reviews/{{this._id}}"></a>
+                            {/* <a href={`/reviews/${this._id}`}></a> */}
                         </div>
                         
 

@@ -75,7 +75,7 @@ class AddNewReview extends Component {
          })
     }
 
-    deleteFestival = () =>{
+    deleteReview = () =>{
         Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.id}/delete`, {})
         .then(()=> {
             console.log('hmmmm')
@@ -127,7 +127,7 @@ class AddNewReview extends Component {
                     <input className="button is-info" type="submit" value="Add Review" />
 
                     <div>
-                        <button onClick={this.deleteFestival} className="delete">Delete This Project</button>
+                        <button onClick={this.deleteReview} className="delete">Delete This Project</button>
                     </div> 
 
                 </form>

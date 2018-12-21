@@ -62,9 +62,7 @@ class SingleReview extends Component{
     reloadPage = () =>{
         Axios.get(`${process.env.REACT_APP_API_URL}/festival/`+this.props.match.params.id)
         .then((id)=>{
-            // console.log('huhuh', id)
-            this.props.history.push(`/festival/`+this.props.match.params.id);
-            
+            window.location.reload()
         })
         .catch(()=>{
 
@@ -74,15 +72,24 @@ class SingleReview extends Component{
     showOneReview = () => {
         if(this.state.oneFestival.fromDB){
        
-            this.state.oneFestival.reviews.forEach((eachReview, i)=> {
-            console.log('holy moly ', eachReview, i);
+            return this.state.oneFestival.reviews.map((eachReview, i)=> {
+                // console.log('holy moly ', eachReview, i);
+                return (
+                    <div>
+                        <div>Reviewed By: {eachReview.overallRating}</div>
+                        <div>Overall Ratings: {eachReview.overallRating}</div>
+                        <div>Sound Ratings: {eachReview.soundRating}</div>
+                        <div>Food Ratings: {eachReview.foodRating}</div>
+                        <div>Art Ratings: {eachReview.artRating}</div>
+                        <div>Vibe Ratings: {eachReview.vibeRating}</div>
+                        <div>Stage Ratings: {eachReview.stageRating}</div>
+                        <div>Activities Ratings: {eachReview.activitiesRating}</div>
+                        <div>Venue Ratings: {eachReview.venueRating}</div>
+                        <hr></hr>
+                    </div>
+                ) 
             });
-        return (
-            <div>
-                Sound Rating: {this.state.eachReview}
-                {/* Sound Rating: {eachReview} */}
-            </div>
-         )
+
         
             //  console.log('holy moly2', eachReview)
             //  return (
@@ -131,15 +138,7 @@ class SingleReview extends Component{
                         </article>
                     </div>
                 )
-            
                 } else if (oneFestival.fromDB) {
-                    
-                    // const allReviews = this.state.oneFestival.reviews.forEach((eachReview, i)=> {
-                    //     console.log('holy moly ', eachReview, i);
-                    //     return eachReview[i]
-                    //  });
- 
-
                     return (
                         <div className="festIndex-container tile is-ancestor">
                             <article class="tile is-child notification has-background-grey-lighter		">
@@ -151,7 +150,6 @@ class SingleReview extends Component{
                                     <h4>Festival price: {oneFestival.price}</h4>
                                     <h6>Festival Details: {oneFestival.description}</h6>
                                     <h4>{this.showOneReview()}</h4>
-                                    <h5>Sound Rating: </h5>
                                 </div>
                                 <div className="add-new-review-container">
                                     <AddNewReview id={this.state.oneFestival.idAPI} oneFest={this.state.oneFestival} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} />
