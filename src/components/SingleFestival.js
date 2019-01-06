@@ -156,7 +156,7 @@ class SingleReview extends Component{
                                     <h4>{this.showOneReview()}</h4>
                                 </div>
                                 <div className="add-new-review-container">
-                                    <AddNewReview  oneFest={this.state.oneFestival} letTheSingleFestComponentKnowThatWeAddedAFestival = {() => this.fetchFestival(this.state.paramsID)} />
+                                    <AddNewReview  oneFest={this.state.oneFestival} letTheSingleFestComponentKnowThatWeAddedAReview = {() => this.fetchFestival(this.state.paramsID)} />
                                 </div>
                             </article>
                         </div>
@@ -183,27 +183,27 @@ class SingleReview extends Component{
             }
     }
 
-    // deleteReview = () =>{
-    //     Axios.post(`${process.env.REACT_APP_API_URL}/${this.state.reviews._id}/delete`, {})
-    //     .then(()=> {
-    //         console.log('hmmmm')
-    //         // if(!props.user){
+    deleteReview = () =>{
+        Axios.post(`${process.env.REACT_APP_API_URL}/${this.state.reviews._id}/delete`, {})
+        .then(()=> {
+            console.log('hmmmm')
+            // if(!props.user){
 
-    //         // }
-    //     })
-    //     .then(()=>{
+            // }
+        })
+        .then(()=>{
             
-    //         window.location.reload()
-    //     })
-    //     .catch(()=>{
+            window.location.reload()
+        })
+        .catch(()=>{
 
-    //     })
-    // }
+        })
+    }
 
 
 
     render(){
-        console.log("%%%%%%%%%%%%%%%%%%%%%%%", this.state);
+        // console.log("%%%%%%%%%%%%%%%%%%%%%%%", this.state);
         
         return(
             <div className="list-of-festivals-container">

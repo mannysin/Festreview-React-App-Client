@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import "../App.css";
 import Axios from 'axios';
-import {Link} from 'react-router-dom';
-import FestivalIndex from './FestivalIndex';
 
 class AddNewReview extends Component {
     state={
@@ -65,7 +63,7 @@ class AddNewReview extends Component {
                 vibeRating: 0,
                 oneFestival: responseFromOurAPI
             })
-            this.props.letTheSingleFestComponentKnowThatWeAddedAFestival();
+            this.props.letTheSingleFestComponentKnowThatWeAddedAReview();
            
 
 
@@ -74,24 +72,6 @@ class AddNewReview extends Component {
             console.log('error creating review', err)
          })
     }
-
-    // deleteReview = () =>{
-    //     Axios.post(`${process.env.REACT_APP_API_URL}/${this.props.id}/delete`, {})
-    //     .then(()=> {
-    //         console.log('hmmmm')
-    //         // if(!props.user){
-
-    //         // }
-    //     })
-    //     .then(()=>{
-            
-    //         this.props.history.push('/');
-    //     })
-    //     .catch(()=>{
-
-    //     })
-    // }
-
 
     render(){
         return(
@@ -124,10 +104,6 @@ class AddNewReview extends Component {
                     <input className="input" type="number" min="0" max ="10" id="vibeRating" name="vibeRating" onChange={this.updateInput} />
 
                     <input className="button is-info" type="submit" value="Add Review" />
-
-                    <div>
-                        <button className="delete">Delete This Review</button>
-                    </div> 
 
                 </form>
                 
