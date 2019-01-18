@@ -12,6 +12,7 @@ class SingleReview extends Component{
         loading: true,
         paramsID: '',
         editing: true,
+        allReviews: [],
     }
 
     componentDidMount(props){
@@ -22,7 +23,7 @@ class SingleReview extends Component{
 
         //this.setState({paramsID: theID})
         this.fetchFestival(theID)
-        this.fetchReviews(theID)
+        // this.fetchReviews(theID)
     }
 
     fetchFestival = (id) =>{
@@ -33,7 +34,7 @@ class SingleReview extends Component{
             // console.log(" <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< here is a single festival", responseFromApi.data.oneFestival)
 
             // console.log("getting 1 fest.....", id)
-            console.log(responseFromApi.data)
+            // console.log(responseFromApi.data)
             this.setState({
                 oneFestival: responseFromApi.data.oneFestival, 
                 loading: false,
@@ -47,17 +48,17 @@ class SingleReview extends Component{
         })
     }
 
-    fetchReviews = (id) =>{
-        console.log('fetching review', id)
+    // fetchReviews = (id) =>{
+    //     console.log('fetching review', id)
 
-        Axios.get(`${process.env.REACT_APP_API_URL}/reviews/${id}`)
-        .then((responseFromApi)=>{
-            console.log('hmmmmmmmmmmmm', responseFromApi)
-            this.setState({allReviews: responseFromApi.data.reverse()}) 
-        })
-        .catch((err)=>{
-        })
-    }
+    //     Axios.get(`${process.env.REACT_APP_API_URL}/reviews/${id}`)
+    //     .then((responseFromApi)=>{
+    //         console.log('hmmmmmmmmmmmm', responseFromApi)
+    //         this.setState({allReviews: responseFromApi.data.reverse()}) 
+    //     })
+    //     .catch((err)=>{
+    //     })
+    // }
 
     reloadPage = () =>{
         Axios.get(`${process.env.REACT_APP_API_URL}/festival/`+this.props.match.params.id)
@@ -70,9 +71,7 @@ class SingleReview extends Component{
     }
 
     showOneReview = () => {
-        console.log(this)
         if(this.state.oneFestival.fromDB){
-            console.log(this)
             return this.state.oneFestival.reviews.map((eachReview, i)=> {
                 console.log('holy moly ', eachReview, i);
                 return (
@@ -87,21 +86,12 @@ class SingleReview extends Component{
                         <div>Activities Ratings: {eachReview.activitiesRating}</div>
                         <div>Venue Ratings: {eachReview.venueRating}</div>
                         <div>
-                            <button className="delete">Delete This Review</button>
+                            <button onClick = {this.deleteReview} className="delete">Delete This Review</button>
                         </div> 
                         <hr></hr>
                     </div>
                 ) 
             });
-
-        
-            //  console.log('holy moly2', eachReview)
-            //  return (
-            //     <div>
-            //         Sound Rating: {this.state.allTheReviews}
-            //         Sound Rating: {allTheReviews}
-            //     </div>
-            //  )
          }
     }
 
@@ -121,10 +111,6 @@ class SingleReview extends Component{
     showOneFestival = () => {
         let oneFestival = this.state.oneFestival; 
         if(oneFestival.fromDB !== true){
-        //     const allFestivals = this.state.allTheFestivals.filter((eachFestival)=>{
-        //         return eachFestival.save()
-        //     })
-
                 return(
                     <div className="festIndex-container tile is-ancestor">
                         <article class="tile is-child notification has-background-grey-lighter		">
@@ -163,8 +149,7 @@ class SingleReview extends Component{
                     )
             
                 }
-    }       
-    // }
+    } 
 
     showLoader = () => {
         if(this.state.loading && !this.state.oneFestival.fromDB){
@@ -184,7 +169,13 @@ class SingleReview extends Component{
     }
 
     deleteReview = () =>{
-        Axios.post(`${process.env.REACT_APP_API_URL}/${this.state.reviews._id}/delete`, {})
+        console.log('yo yo mo fo', this.state)
+
+        const param = this.state.oneFestival.reviews[0]._id
+
+        console.log('param ', param)
+
+        Axios.post(`${process.env.REACT_APP_API_URL}/reviews/${param}/delete`, {})
         .then(()=> {
             console.log('hmmmm')
             // if(!props.user){
@@ -192,9 +183,7 @@ class SingleReview extends Component{
             // }
         })
         .then(()=>{
-            
-            window.location.reload()
-        })
+            this.props.history.push(`/festival/${this.state.oneFestival.fromDB.idAPI}`);})
         .catch(()=>{
 
         })
@@ -203,8 +192,6 @@ class SingleReview extends Component{
 
 
     render(){
-        // console.log("%%%%%%%%%%%%%%%%%%%%%%%", this.state);
-        
         return(
             <div className="list-of-festivals-container">
                 <div>
@@ -212,10 +199,7 @@ class SingleReview extends Component{
                 </div>
 
                 <div>
-                {this.showOneFestival()}
-                {/* <div className="add-new-review-container">
-                 <AddNewReview id={this.state.oneFestival.idAPI} letTheSingleFestComponentKnowThatWeAddedAProject = {() => this.fetchFestival(this.state.paramsID)} />
-                </div> */}
+                    {this.showOneFestival()}
                 </div>
 
 
